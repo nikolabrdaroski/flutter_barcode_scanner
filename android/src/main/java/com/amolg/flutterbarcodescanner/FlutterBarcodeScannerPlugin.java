@@ -68,7 +68,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
     public FlutterBarcodeScannerPlugin() {
     }
 
-    private FlutterBarcodeScannerPlugin(FlutterActivity activity, final PluginRegistry.Registrar registrar) {
+    private FlutterBarcodeScannerPlugin(FlutterFragmentActivity activity, final PluginRegistry.Registrar registrar) {
         FlutterBarcodeScannerPlugin.activity = activity;
     }
 
@@ -84,7 +84,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
         if (registrar.context() != null) {
             applicationContext = (Application) (registrar.context().getApplicationContext());
         }
-        FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin((FlutterActivity) registrar.activity(), registrar);
+        FlutterBarcodeScannerPlugin instance = new FlutterBarcodeScannerPlugin((FlutterFragmentActivity) registrar.activity(), registrar);
         instance.createPluginSetup(registrar.messenger(), applicationContext, activity, registrar, null);
     }
 
@@ -245,7 +245,7 @@ public class FlutterBarcodeScannerPlugin implements MethodCallHandler, ActivityR
             final ActivityPluginBinding activityBinding) {
 
 
-        this.activity = (FlutterActivity) activity;
+        this.activity = (FlutterFragmentActivity) activity;
         eventChannel =
                 new EventChannel(messenger, "flutter_barcode_scanner_receiver");
         eventChannel.setStreamHandler(this);
